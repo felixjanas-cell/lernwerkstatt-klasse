@@ -87,7 +87,6 @@
 
 
 <div class="toolbar">
-  <button id="exportBtn">⬇️ Fortschritt exportieren (Backup)</button>
   <button id="resetBtn">🗑️ Fortschritt zurücksetzen</button>
 </div>
 
@@ -222,11 +221,6 @@ function streak(dates){
   while(set[key(cur)]){ s++; cur.setDate(cur.getDate()-1); }
   return s;
 }
-document.getElementById('exportBtn').onclick=function(){
-  var blob=new Blob([localStorage.getItem(STORE)||'{}'],{type:'application/json'});
-  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-  a.download='lernfortschritt-'+new Date().toISOString().slice(0,10)+'.json'; a.click();
-};
 document.getElementById('resetBtn').onclick=function(){
   if(confirm('Wirklich den GESAMTEN lokalen Fortschritt löschen?')){ localStorage.removeItem(STORE); render(); }
 };
